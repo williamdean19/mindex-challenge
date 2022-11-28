@@ -2,8 +2,10 @@ package com.mindex.challenge.controller;
 
 import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.service.CompensationService;
+import com.mindex.challenge.service.EmployeeService;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +19,21 @@ public class CompensationController {
     @Autowired
     private CompensationService compensationService;
 
+    @Autowired
+    private EmployeeService employeeService;
+    
     @PostMapping("compensation/{EMPLOYEE_ID}")
     public Compensation create(@PathVariable final String EMPLOYEE_ID, @RequestBody final Compensation COMPENSATION) {
         LOG.debug("Received compensation create request for id [{}] and compensation [{}]", EMPLOYEE_ID, COMPENSATION);
         try{
-            int validateCreate = compensationService.validateCreate(COMPENSATION);
+            int validateCreate = 0; //compensationService.validateCreate(COMPENSATION);
             if(validateCreate == 0){
-                return compensationService.create(COMPENSATION);
+                Compensation toCreate = new Compensation();
+                toCreate.setCompensationId(UUID.randomUUID().toString());
+                toCreate.setEmployee(employeeService.read(EMPLOYEE_ID));
+                toCreate.setSalary(COMPENSATION.getSalary());
+                toCreate.setEffectiveDate(COMPENSATION.getEffectiveDate());
+                return compensationService.create(toCreate);
             }
             else{
                 throw new RuntimeException("Validation failed with error code: " + validateCreate);

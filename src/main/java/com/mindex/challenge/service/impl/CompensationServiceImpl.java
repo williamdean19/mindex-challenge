@@ -3,6 +3,7 @@ package com.mindex.challenge.service.impl;
 import com.mindex.challenge.dao.CompensationRepository;
 
 import com.mindex.challenge.data.Compensation;
+import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.service.CompensationService;
 import com.mindex.challenge.service.EmployeeService;
 
@@ -47,7 +48,9 @@ public class CompensationServiceImpl implements CompensationService {
         // will not return a compensation with an effective date in the future.
         LOG.debug("Looking up current compensation for employeeId [{}]", employeeId);
 
-        List<Compensation> compensationList = compensationRepository.findByEmployee(employeeId);
+        Employee employee = employeeService.read(employeeId);
+
+        List<Compensation> compensationList = compensationRepository.findByEmployee(employee);
         compensationList.sort((c1, c2) -> c1.getEffectiveDate().compareTo(c2.getEffectiveDate()));
 
         Date currentDate = new Date();
@@ -64,7 +67,9 @@ public class CompensationServiceImpl implements CompensationService {
     public List<Compensation> lookupAll(String employeeId) {
         LOG.debug("Looking up all compensation records for employeeId [{}]", employeeId);
         
-        List<Compensation> compensationList = compensationRepository.findByEmployee(employeeId);
+        Employee employee = employeeService.read(employeeId);
+
+        List<Compensation> compensationList = compensationRepository.findByEmployee(employee);
         if(compensationList == null){
             throw new RuntimeException("No compensation records found for: " + employeeId);
         }
