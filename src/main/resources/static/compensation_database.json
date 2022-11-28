@@ -1,0 +1,50 @@
+[
+  {
+    "compensationId" : "1",
+    "employeeId" : "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary__c" : "300000.00",
+    "effectiveDate" : "2020-01-01"
+  
+  },
+  {
+    "compensationId" : "2",
+    "employeeId" : "b7839309-3348-463b-a7e3-5de1c168beb3",
+    "salary__c" : "100000.00",
+    "effectiveDate" : "2020-01-01"
+    
+  },
+  {
+    "compensationId" : "3",
+    "employeeId" : "03aa1462-ffa9-4978-901b-7c001562cf6f",
+    "salary__c" : "200000.00",
+    "effectiveDate" : "2020-01-01"
+  },
+  {
+    "compensationId" : "4",
+    "employeeId" : "62c1084e-6e34-4630-93fd-9153afb65309",
+    "salary__c" : "125000.00",
+    "effectiveDate" : "2020-01-01"
+  },
+  {
+    "compensationId" : "5",
+    "employeeId" : "c0c2293d-16bd-4603-8e08-638a9d18b22c",
+    "salary__c" : "150000.00",
+    "effectiveDate" : "2020-01-01"
+  },
+  {
+    "compensationId" : "6",
+    "employeeId" : "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary__c" : "400000.00",
+    "effectiveDate" : "2024-01-01"
+  
+  },
+  {
+    "compensationId" : "7",
+    "employeeId" : "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary__c" : "350000.00",
+    "effectiveDate" : "2022-01-01"
+  
+  }
+  
+
+]

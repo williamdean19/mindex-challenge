@@ -1,7 +1,6 @@
 package com.mindex.challenge.controller;
 
 import com.mindex.challenge.data.Employee;
-import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,18 +30,20 @@ public class EmployeeController {
 
     @PutMapping("/employee/{id}")
     public Employee update(@PathVariable String id, @RequestBody Employee employee) {
-        LOG.debug("Received employee create request for id [{}] and employee [{}]", id, employee);
+        LOG.debug("Received employee update request for id [{}] and employee [{}]", id, employee);
 
         employee.setEmployeeId(id);
         return employeeService.update(employee);
     }
 
-    @GetMapping("/employee/{id}/reporting-structure")
-    public String reportingStructure(@PathVariable String id) {
-        Employee employee = employeeService.read(id);
-        LOG.debug("Received Reporting Structure read request for [{}]", employee.computeEmployeeIdAndFullName());
-        ReportingStructure reportingStructure = new ReportingStructure(employee);
-        LOG.debug("Reporting Structure for [{}] is created", employee.computeEmployeeIdAndFullName());
-        return employeeService.visualize(reportingStructure);   
+    @PutMapping("/employee/{supervisorId}/add-direct-report?{subordinateId}")
+    public Employee addDirectReport(@PathVariable String supervisorId, @PathVariable String subordinateId) {
+        LOG.debug("Received request to add subordinate with employee ID [{}] to the list of direct reports for supervisor with employee ID [{}]", supervisorId, subordinateId);
+
+        Employee supervisor = employeeService.read(supervisorId);
+        Employee subordinate = employeeService.read(subordinateId);
+        supervisor.addDirectReport(subordinate);
+        return employeeService.update(subordinate);
     }
+
 }
