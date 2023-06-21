@@ -1,5 +1,5 @@
 # Task 1
-HTTP endpoint can be accessed via http://localhost:8080/employee/\{id\}/reporting-structure
+When the Spring boot application is running, the HTTP endpoint can be accessed via http://localhost:8080/employee/\{id\}/reporting-structure
 ### Example:
 ```
 curl "http://localhost:8080/employee/16a596ae-edd3-4847-99fe-c4518e82c86f/reporting-structure"
