@@ -1,4 +1,4 @@
-# Task 1
+# Task 1 - developer notes
 When the Spring boot application is running, the HTTP endpoint can be accessed via http://localhost:8080/employee/\{id\}/reporting-structure
 ### Example:
 ```
